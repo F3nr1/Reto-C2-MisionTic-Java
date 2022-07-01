@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Principal;
 import Vistas.*;
 import Modelo.*;
@@ -8,11 +13,11 @@ import Modelo.*;
 public class Main {
     
     public static void main(String[] args) {
-	     // get connection to db 
-	      Conexion conexiondb = new Conexion();
-		    // login Jframe ini 
+	
+	Conexion conexiondb = new Conexion();
+		
         Login login = new Login();
-        // Login Jframe visible true
+        
         login.setVisible(true);
     }
 }

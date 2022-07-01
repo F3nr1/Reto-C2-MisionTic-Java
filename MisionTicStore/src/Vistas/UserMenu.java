@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Vistas;
 import  Modelo.*;
 import java.sql.Connection;
@@ -80,7 +85,7 @@ public class UserMenu extends javax.swing.JFrame {
 
 	
 	@SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         bg1 = new javax.swing.JPanel();
@@ -525,69 +530,69 @@ public class UserMenu extends javax.swing.JFrame {
         getContentPane().add(uiFrameMenuTab, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 610, 560));
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {                                     
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
        //Home btn Click event 
 	   
 	   uiFrameMenuTab.setSelectedIndex(0);
 	   if (uiFrameMenuTab.getTitleAt(uiFrameMenuTab.getSelectedIndex()).equals("Home")) 
             {
             btnHome.setBackground( new Color(90,76,122));
-	         btnEmpleados.setBackground( new Color(183,155,250));
-	         btnSales.setBackground( new Color(183,155,250));
-	          btnProducts.setBackground( new Color(183,155,250));		
+	 btnEmpleados.setBackground( new Color(183,155,250));
+	  btnSales.setBackground( new Color(183,155,250));
+	  btnProducts.setBackground( new Color(183,155,250));		
             }
 	   
-    }                                    
+    }//GEN-LAST:event_btnHomeMouseClicked
 
-    private void btnEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {                                          
+    private void btnEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEmpleadosMouseClicked
         //Employee btn CLick event
 		uiFrameMenuTab.setSelectedIndex(1);
 		if (uiFrameMenuTab.getTitleAt(uiFrameMenuTab.getSelectedIndex()).equals("Emp")) 
             {
             btnEmpleados.setBackground( new Color(90,76,122));
-	          btnHome.setBackground( new Color(183,155,250));
-	          btnSales.setBackground( new Color(183,155,250));
-	          btnProducts.setBackground( new Color(183,155,250));		
+	 btnHome.setBackground( new Color(183,155,250));
+	  btnSales.setBackground( new Color(183,155,250));
+	  btnProducts.setBackground( new Color(183,155,250));		
 			
             }
-    }                                         
+    }//GEN-LAST:event_btnEmpleadosMouseClicked
 
-    private void btnSalesMouseClicked(java.awt.event.MouseEvent evt) {                                      
+    private void btnSalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalesMouseClicked
         // Sale btn click event
 		uiFrameMenuTab.setSelectedIndex(2);
 			if (uiFrameMenuTab.getTitleAt(uiFrameMenuTab.getSelectedIndex()).equals("Sales")) 
             {
             btnSales.setBackground( new Color(90,76,122));
-	          btnHome.setBackground( new Color(183,155,250));
-	          btnEmpleados.setBackground( new Color(183,155,250));
-	          btnProducts.setBackground( new Color(183,155,250));
+	 btnHome.setBackground( new Color(183,155,250));
+	  btnEmpleados.setBackground( new Color(183,155,250));
+	  btnProducts.setBackground( new Color(183,155,250));
             }
-    }                                     
+    }//GEN-LAST:event_btnSalesMouseClicked
 
-    private void btnProductsMouseClicked(java.awt.event.MouseEvent evt) {                                         
+    private void btnProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProductsMouseClicked
         // Products btn click event
-		    uiFrameMenuTab.setSelectedIndex(3);
+		uiFrameMenuTab.setSelectedIndex(3);
 				if (uiFrameMenuTab.getTitleAt(uiFrameMenuTab.getSelectedIndex()).equals("Products")) 
             {
             btnProducts.setBackground( new Color(90,76,122));
-	          btnHome.setBackground( new Color(183,155,250));
-	          btnEmpleados.setBackground( new Color(183,155,250));
-	          btnSales.setBackground( new Color(183,155,250));		
+	   btnHome.setBackground( new Color(183,155,250));
+	   btnEmpleados.setBackground( new Color(183,155,250));
+	  btnSales.setBackground( new Color(183,155,250));		
             }
 		
-    }                                        
+    }//GEN-LAST:event_btnProductsMouseClicked
 
-    private void btnAddEmpMouseClicked(java.awt.event.MouseEvent evt) {                                       
+    private void btnAddEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddEmpMouseClicked
               AddUserForm addUserF = new AddUserForm (this, rootPaneCheckingEnabled);
-	           addUserF.setVisible(rootPaneCheckingEnabled);
+	     addUserF.setVisible(rootPaneCheckingEnabled);
              borrarDatosTabla();
-	           listarEmpleados();
+	    listarEmpleados();
        
 
 
-    }                                      
+    }//GEN-LAST:event_btnAddEmpMouseClicked
 
 	
 	
@@ -630,7 +635,7 @@ public class UserMenu extends javax.swing.JFrame {
 		});
 	}
 
-    // Variables declaration - do not modify                     
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg1;
     private javax.swing.JPanel bg2;
     private javax.swing.JButton btnAddEmp;
@@ -667,5 +672,5 @@ public class UserMenu extends javax.swing.JFrame {
     private javax.swing.JLabel txtInfo;
     private javax.swing.JLabel txtInfo1;
     private javax.swing.JTabbedPane uiFrameMenuTab;
-    // End of variables declaration                   
+    // End of variables declaration//GEN-END:variables
 }
