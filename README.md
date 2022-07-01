@@ -8,7 +8,7 @@ Login Jframe
 ![Alt Text](https://media.giphy.com/media/Zrpf2hbEMhENDQxD6N/giphy.gif)
 
 ChangePassword Jform
-![image](https://imgur.com/RGrcrfO)
+![image](https://i.imgur.com/RGrcrfO.jpg)
 
 
 UserMenu Jframe
@@ -16,7 +16,7 @@ UserMenu Jframe
 
 
 AddUser Jform 
-![image](https://imgur.com/xOTTixq)
+![image](https://i.imgur.com/xOTTixq.jpg)
 
 
 
