@@ -2,7 +2,7 @@
 Basic java swing program with sql connection
 
 
-UI
+UI V1
 ======================================================================================================
 
 ![Alt Text](https://media.giphy.com/media/Zrpf2hbEMhENDQxD6N/giphy.gif)
@@ -18,6 +18,9 @@ UI
 
 ![image](https://i.imgur.com/xOTTixq.jpg)
 
+
+UI V2
+=====================================================================================================
 
 
 
