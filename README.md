@@ -1,5 +1,13 @@
-# Reto-1-C2-MisionTic-Java
+# Retos-C2-MisionTic-Java
+
 Basic java swing program with sql connection
+
+
+Versions 
+======================================================================================================
+Reto 1: https://github.com/F3nr1/Reto-1-C2-MisionTic-Java/tree/main/MisionTicStore/src
+
+Reto 2: https://github.com/F3nr1/Reto-1-C2-MisionTic-Java/tree/main/MisionTicStore/src-2
 
 
 UI V1
@@ -19,8 +27,7 @@ UI V1
 ![image](https://i.imgur.com/xOTTixq.jpg)
 
 
-UI V2
-=====================================================================================================
+
 
 
 
