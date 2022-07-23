@@ -82,11 +82,11 @@ public class UserMenu extends javax.swing.JFrame {
 		}
 
 	    } catch (SQLException e) {
-		System.out.println("Error de creación de tabla ");
+		System.out.println("1 Error de creación de tabla ");
 
 	    }
 	} else {
-	    String queryFind = "SELECT nombreEmp ,apellidos, tipoDocumento, documento, correo, nombreSucursal FROM empleado INNER JOIN sucursal WHERE empleado.FK_idSucursal = sucursal.idSucursal AND nombreEmp" + " LIKE '%" + empFinder + "%' OR apellidos LIKE '%" + empFinder+ "%' OR documento LIKE '%" + empFinder+ "%' OR correo LIKE '%" + empFinder+ "%' OR nombreSucursal LIKE '%" + empFinder+ "%' ;";
+	    String queryFind = "SELECT nombreEmp ,apellidos, tipodocumento, documento, correo, nombreSucursal FROM empleado INNER JOIN sucursal ON FK_idSucursal = idSucursal WHERE nombreEmp "+" LIKE '%"+ empFinder + "%' OR apellidos LIKE '%"+ empFinder + "%' OR documento LIKE '%"+ empFinder + "%' OR correo LIKE '%"+ empFinder + "%'OR nombreSucursal LIKE '%"+ empFinder + "%';";
              System.out.println(queryFind);
 	    try {
 		connection = conexion.getConnection();
@@ -116,7 +116,7 @@ public class UserMenu extends javax.swing.JFrame {
 		}
 
 	    } catch (SQLException e) {
-		System.out.println("Error de creación de tabla ");
+		System.out.println(" 2 Error de creación de tabla ");
 
 	    }
 
