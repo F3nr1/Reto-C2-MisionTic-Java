@@ -1,0 +1,520 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Vistas;
+
+import Modelo.Conexion;
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.awt.Color;
+import javax.swing.JOptionPane;
+
+/**
+ * Show employee info form
+ *
+ * @author Carlos
+ */
+public class ShowUserForm extends javax.swing.JDialog {
+
+    //Variables Sql connection
+    Conexion conexion = new Conexion();
+    Connection connection;
+    Statement st;
+    ResultSet rs;
+
+    /**
+     * Creates new form ShowUserForm
+     *
+     * @param parent
+     * @param modal
+     */
+    public ShowUserForm(java.awt.Frame parent, boolean modal) {
+	super(parent, modal);
+	initComponents();
+    }
+
+    public void recibirDatos(String nombreEmp, String apellidos, String documento, String correo, String sucursal) {
+	System.out.println(nombreEmp + "" + documento + "" + correo);
+	txtSucursal.setText(sucursal);
+	txtName.setText(nombreEmp);
+	txtSurnames.setText(apellidos);
+	txtIdNum.setText(documento);
+	txtEmail.setText(correo);
+
+    }
+
+    public void actualizarEmpleado() {
+	// get variables from txtfields
+	String documento = txtIdNum.getText();
+	String nombre = txtName.getText();
+	String apellidos = txtSurnames.getText();
+	String correo = txtEmail.getText();
+	String sucursal = txtSucursal.getText();
+        // if editable txt  are empty show msg
+	if (nombre.isEmpty()) {
+
+	    JOptionPane.showMessageDialog(this, "El nombre del empleado es un campo requerido", "", JOptionPane.WARNING_MESSAGE);
+
+	} else if (apellidos.isEmpty()) {
+
+	    JOptionPane.showMessageDialog(this, "El valor en el campo de apellido es requerido", "", JOptionPane.WARNING_MESSAGE);
+
+	} else if (correo.isEmpty()) {
+
+	    JOptionPane.showMessageDialog(this, "El correo del empleado  es un valor  requerido", "", JOptionPane.WARNING_MESSAGE);
+        // if address numbers have a value exe
+	} else {
+	    
+	    // select querry get id 
+	    String queryIdEmpleado = "SELECT idEmp FROM empleado WHERE documento = '" + documento + "';";
+	    // print query
+	    System.out.println(queryIdEmpleado);
+	    
+	    // first Try and Catch from id 
+	    try {
+		connection = conexion.getConnection();
+		st = connection.createStatement();
+		rs = st.executeQuery(queryIdEmpleado);
+		//Show msg when the registry of a new employee its successful 
+
+		while (rs.next()) {
+		    
+		    // store the idEmp value 
+		    int idEmp = rs.getInt("idEmp");
+		    System.out.println(idEmp);
+		    
+		    //update query using idEmp
+		    String queryUpdate = "UPDATE empleado SET `nombreEmp`='" + nombre + "' ,`apellidos`= '" + apellidos + "' ,`documento`= '" + documento + "' ,`correo`= '" + correo + " ' WHERE `idEmp` = " + idEmp + " ;";
+		    System.out.println(queryUpdate);
+		    
+		    // try and catch for connection
+		    try {
+			connection = conexion.getConnection();
+			st = connection.createStatement();
+			st.executeUpdate(queryUpdate);
+			//Show msg when the registry of a new employee its successful 
+			JOptionPane.showMessageDialog(this, "Se ha actualizado los datos del empleado ", "", JOptionPane.INFORMATION_MESSAGE);
+			this.dispose();
+
+		    } catch (SQLException e) {
+			JOptionPane.showMessageDialog(this, "No fue posible actualizar los datos del empleado.", "", JOptionPane.ERROR_MESSAGE);
+
+		    }
+
+		}
+            // print SQLExection if something happens
+	    } catch (SQLException e) {
+		System.out.println(e);
+
+	    }
+
+	}
+
+    }
+
+    public void eliminarEmpleado() {
+
+	String documento = txtIdNum.getText();
+
+	String queryIdEmpleado = "SELECT idEmp FROM empleado WHERE documento = '" + documento + "';";
+	System.out.println(queryIdEmpleado);
+	try {
+	    connection = conexion.getConnection();
+	    st = connection.createStatement();
+	    rs = st.executeQuery(queryIdEmpleado);
+	    //Show msg when the registry of a new employee its successful 
+
+	    while (rs.next()) {
+		int idEmp = rs.getInt("idEmp");
+		System.out.println(idEmp);
+		String queryDel = "DELETE  FROM empleado WHERE idEmp = " + idEmp + ";";
+
+		try {
+		    connection = conexion.getConnection();
+		    st = connection.createStatement();
+		    st.executeUpdate(queryDel);
+		    //Show msg when the registry of a new employee its successful 
+		    JOptionPane.showMessageDialog(this, "El usuario ha sido eliminado. ", "", JOptionPane.INFORMATION_MESSAGE);
+
+		} catch (SQLException e) {
+		    JOptionPane.showMessageDialog(this, "No fue posible eliminar al empleado.", "", JOptionPane.ERROR_MESSAGE);
+
+		}
+
+	    }
+
+	} catch (SQLException e) {
+	    System.out.println(e);
+
+	}
+
+	this.dispose();
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this code. The content of this method is always regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtInfo1 = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        btnReturn = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        btnDelEmp = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        txtSurnames = new javax.swing.JTextField();
+        txtIdNum = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtSucursal = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        btnUpdateEmp = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Informacion de Empleado");
+        setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(130, 208, 250));
+
+        jLabel2.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Nombre");
+
+        jLabel4.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Apellido(s)");
+
+        jLabel5.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Sucursal");
+
+        jLabel6.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Número documento");
+
+        jLabel7.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Correo");
+
+        txtInfo1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        txtInfo1.setForeground(new java.awt.Color(255, 255, 255));
+        txtInfo1.setText("Editar información");
+
+        btnReturn.setBackground(new java.awt.Color(81, 141, 173));
+        btnReturn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnReturnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnReturnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnReturnMouseExited(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Regresar");
+
+        javax.swing.GroupLayout btnReturnLayout = new javax.swing.GroupLayout(btnReturn);
+        btnReturn.setLayout(btnReturnLayout);
+        btnReturnLayout.setHorizontalGroup(
+            btnReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnReturnLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel8)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+        btnReturnLayout.setVerticalGroup(
+            btnReturnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnReturnLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        btnDelEmp.setBackground(new java.awt.Color(218, 12, 86));
+        btnDelEmp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDelEmpMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDelEmpMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDelEmpMouseExited(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Eliminar");
+
+        javax.swing.GroupLayout btnDelEmpLayout = new javax.swing.GroupLayout(btnDelEmp);
+        btnDelEmp.setLayout(btnDelEmpLayout);
+        btnDelEmpLayout.setHorizontalGroup(
+            btnDelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnDelEmpLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel9)
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+        btnDelEmpLayout.setVerticalGroup(
+            btnDelEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnDelEmpLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        txtIdNum.setEditable(false);
+        txtIdNum.setBackground(new java.awt.Color(204, 204, 204));
+
+        txtSucursal.setEditable(false);
+        txtSucursal.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/edit.png"))); // NOI18N
+
+        btnUpdateEmp.setBackground(new java.awt.Color(81, 141, 173));
+        btnUpdateEmp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUpdateEmpMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnUpdateEmpMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnUpdateEmpMouseExited(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Actualizar");
+
+        javax.swing.GroupLayout btnUpdateEmpLayout = new javax.swing.GroupLayout(btnUpdateEmp);
+        btnUpdateEmp.setLayout(btnUpdateEmpLayout);
+        btnUpdateEmpLayout.setHorizontalGroup(
+            btnUpdateEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnUpdateEmpLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel11)
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+        btnUpdateEmpLayout.setVerticalGroup(
+            btnUpdateEmpLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnUpdateEmpLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtSucursal, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                            .addComponent(txtName)
+                            .addComponent(txtSurnames)
+                            .addComponent(txtIdNum)
+                            .addComponent(txtEmail)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(btnUpdateEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(txtInfo1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(114, 114, 114)
+                .addComponent(btnDelEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtInfo1)
+                            .addComponent(jLabel1)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(btnDelEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSurnames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtIdNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnUpdateEmp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnReturnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReturnMouseClicked
+	this.dispose();
+
+    }//GEN-LAST:event_btnReturnMouseClicked
+
+    private void btnReturnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReturnMouseEntered
+	//hover effect button  enter
+	btnReturn.setBackground(new Color(17, 204, 250));
+    }//GEN-LAST:event_btnReturnMouseEntered
+
+    private void btnReturnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReturnMouseExited
+	// hover effect button exit
+	btnReturn.setBackground(new Color(81, 141, 173));
+    }//GEN-LAST:event_btnReturnMouseExited
+
+    private void btnDelEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDelEmpMouseClicked
+	eliminarEmpleado();
+    }//GEN-LAST:event_btnDelEmpMouseClicked
+
+    private void btnDelEmpMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDelEmpMouseEntered
+	//hover effect button  enter
+	btnDelEmp.setBackground(new Color(17, 204, 250));
+    }//GEN-LAST:event_btnDelEmpMouseEntered
+
+    private void btnDelEmpMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDelEmpMouseExited
+	// hover effect button exit
+	btnDelEmp.setBackground(new Color(218, 12, 86));
+    }//GEN-LAST:event_btnDelEmpMouseExited
+
+    private void btnUpdateEmpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateEmpMouseClicked
+	actualizarEmpleado();
+    }//GEN-LAST:event_btnUpdateEmpMouseClicked
+
+    private void btnUpdateEmpMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateEmpMouseEntered
+	//hover effect button  enter
+	btnUpdateEmp.setBackground(new Color(17, 204, 250));
+    }//GEN-LAST:event_btnUpdateEmpMouseEntered
+
+    private void btnUpdateEmpMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateEmpMouseExited
+	// hover effect button exit
+	btnUpdateEmp.setBackground(new Color(81, 141, 173));
+    }//GEN-LAST:event_btnUpdateEmpMouseExited
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+	/* Set the Nimbus look and feel */
+	//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+	/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+	 */
+	try {
+	    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+		if ("Nimbus".equals(info.getName())) {
+		    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+		    break;
+		}
+	    }
+	} catch (ClassNotFoundException ex) {
+	    java.util.logging.Logger.getLogger(ShowUserForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	} catch (InstantiationException ex) {
+	    java.util.logging.Logger.getLogger(ShowUserForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	} catch (IllegalAccessException ex) {
+	    java.util.logging.Logger.getLogger(ShowUserForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+	    java.util.logging.Logger.getLogger(ShowUserForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+	}
+	//</editor-fold>
+
+	/* Create and display the dialog */
+	java.awt.EventQueue.invokeLater(() -> {
+	    ShowUserForm dialog = new ShowUserForm(new javax.swing.JFrame(), true);
+	    dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+		@Override
+		public void windowClosing(java.awt.event.WindowEvent e) {
+		    System.exit(0);
+		}
+	    });
+	    dialog.setVisible(true);
+	});
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel btnDelEmp;
+    private javax.swing.JPanel btnReturn;
+    private javax.swing.JPanel btnUpdateEmp;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtIdNum;
+    private javax.swing.JLabel txtInfo1;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtSucursal;
+    private javax.swing.JTextField txtSurnames;
+    // End of variables declaration//GEN-END:variables
+}
