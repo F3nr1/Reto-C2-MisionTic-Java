@@ -23,13 +23,17 @@ UI V1
 
 ![image](https://i.imgur.com/RGrcrfO.jpg)
 
+![image](https://i.imgur.com/VxfdfF6.jpg)
 
+![image](https://i.imgur.com/lv8Ubak.jpg) 
 
-![Alt Text](https://media.giphy.com/media/7uG7fQ03rN8qqnYnFZ/giphy.gif)
+![image](https://i.imgur.com/AcwftFU.jpg) 
 
+![image](https://i.imgur.com/lAlDNTV.jpg)
 
+![image](https://i.imgur.com/Nb4Wr5K.jpg)
 
-![image](https://i.imgur.com/xOTTixq.jpg)
+![image](https://i.imgur.com/QRoUcqP.jpg)
 
 
 
